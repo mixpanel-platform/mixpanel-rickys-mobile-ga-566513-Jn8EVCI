@@ -46,16 +46,16 @@
          
         var nextPage = true,
         
-        while (i < 10) {
-        MP.api.people({where: propertyName, page: i}).done(function(results) {
-            i ++
-            nextPage = false
+        while (nextPage) {
+        MP.api.people({where: propertyName, page: 0}).done(function(results) {
+            console.log(nextPage);
+            nextPage = false;
             debugger;
           })
         };
         
         //Query People profiles
-        /*while (has_results) {
+        /*while (nextPage) {
           debugger
           MP.api.people({where: propertyName, page: 0}).done(function(results) {
             numPeople = Object.keys(results.values().results).length;
