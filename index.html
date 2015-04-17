@@ -47,10 +47,10 @@
         var nextPage = 1;
         debugger;
         
-        while (nextPage == 1) {
+        while (nextPage < 2) {
         MP.api.people({where: propertyName, page: 0}).done(function(results) {
             console.log(nextPage);
-            nextPage = 0;
+            nextPage++;
             debugger;
           })
         };
