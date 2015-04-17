@@ -47,8 +47,8 @@
         var nextPage = 1;
         debugger;
         
-        if (nextPage < 2) {
-          MP.api.people({where: propertyName, page: 0}).done(function(results) {
+        while (nextPage < 2) {
+          MP.api.people({where: propertyName, page: 0}).done(function(output) {
             console.log(nextPage);
             nextPage++;
             debugger;
