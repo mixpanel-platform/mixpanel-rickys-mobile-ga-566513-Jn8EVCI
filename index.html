@@ -47,13 +47,13 @@
         var nextPage = true;
         debugger;
         
-        while (nextPage) {
+        //while (nextPage) {
         MP.api.people({where: propertyName, page: 0}).done(function(results) {
             console.log(nextPage);
             nextPage = false;
             debugger;
           })
-        };
+        //};
         
         //Query People profiles
         /*while (nextPage) {
