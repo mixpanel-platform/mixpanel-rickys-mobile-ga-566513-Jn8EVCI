@@ -44,16 +44,16 @@
         e.preventDefault();
         propertyName = $('#property input:first').val();
          
-        var nextPage = true;
+        var nextPage = 1;
         debugger;
         
-        //while (nextPage) {
+        while (nextPage == 1) {
         MP.api.people({where: propertyName, page: 0}).done(function(results) {
             console.log(nextPage);
-            nextPage = false;
+            nextPage = 0;
             debugger;
           })
-        //};
+        };
         
         //Query People profiles
         /*while (nextPage) {
