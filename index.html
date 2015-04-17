@@ -44,7 +44,7 @@
         e.preventDefault();
         propertyName = $('#property input:first').val();
          
-        var nextPage = true,
+        var nextPage = true;
         
         while (nextPage) {
         MP.api.people({where: propertyName, page: 0}).done(function(results) {
