@@ -39,48 +39,56 @@
           pageNum = 0,
           nextPage = true,
           output = {};
-
+          
+      //Function for pagination
+      function getProfiles(pageNum, sessionId, output){
+        MP.api.people({where: propertyName, page: pageNum, session_id: sessionId}).done(function(output) {
+          console.log(output.values());
+          debugger;
+          numPeople = Object.keys(results.values().results).length;
+          if (numPeople == 1000) {
+            pageNum++;
+            output = $.concat(output, results.values().results)
+            getProfiles(pageNum, sessionId, output)
+          } else { // ending iteration
+            return (pageNum+1)*1000 + numPeople + 1;;
+          };
+        });
+      };      
+          
+          
       //Record selector for profiles
       $('#property').submit(function(e) {
         e.preventDefault();
         propertyName = $('#property input:first').val();
         
-       
-          /*var profiles = MP.api.people({where: propertyName, page: pageNum});
-          $.when(profiles).done(function(results) {
+        //Building out profiles  
+        MP.api.people({where: propertyName, page: 0}).done(function(results) {
+          var sessionId = output.values().session_id;
+          numPeople = Object.keys(results.values().results).length;
+          debugger
+          if (numPeople == 1000) {
+            pageNum++;
             debugger
-            var profileData = profiles.values();
-            numPeople = Object.keys(results.values().results).length;
-            debugger;
-            if (numPeople == 1000) {
-              pageNum ++;
-              debugger;
-              output = $.concat(output, results.values().results)
-            } else {
-              has_results == false;
-              totalProfiles = (pageNum+1)*1000 + numPeople;
-            }
-          });
-          
-        
-        
-        var appInstall = MP.api.people({where: propertyName, page: 0});*/
-        
-        
-        //var sessionId = data.values().session_id;
-        //var dataTwo = MP.api.people({where: propertyName, page: 1, session_id: sessionId})
-        
-
-
-        MP.api.people({where: propertyName, page: 0}).done(function(output) {
-          console.log(output.values());
-          sessionId = output.values().session_id;
-          debugger;
-          MP.api.people({where: propertyName, page: 1, session_id: sessionId}).done(function(output) {
-            console.log(output.values());
-            debugger;
-          });
+            output = results.values().results;
+            getProfiles(pageNum, sessionId, output)
+          } else {
+            output = results.values().results;
+          };
+          $('.confirm-text')
+            .html(
+              "Property: <strong>" + propertyName + 
+              "</strong><br># People profiles that match: <strong>" + totalProfiles + "</strong>")
+            .css("color", "rgb(95,105,131)");
+          console.log(output)
+          runQuery(output);
+        }).fail(function() {
+            $('.confirm-text')
+              .html("Error: Please enter a valid property selector.")
+              .css("color", "red");
         });
+      });
+      
 
         
         
