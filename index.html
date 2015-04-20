@@ -43,15 +43,21 @@
       $('#property').submit(function(e) {
         e.preventDefault();
         propertyName = $('#property input:first').val();
-         
-        var nextPage = 1;
-
         
-          MP.api.people({where: propertyName, page: 0}).done(function(output) {
-            console.log(output);
-            nextPage++;
+        MP.api.people({where: propertyName, page: 2}).done(function(output) {
+          console.log(output.values().results)
+        });
+        
+         
+        /*if (currentPage == pageNum) {
+          MP.api.people({where: propertyName, page: pageNum}).done(function(output) {
+            currentPage = output.values().page;
+            pageNum++;
+            console.log(currentPage);
+            console.log(pageNum);
             debugger;
-          })
+          }):
+        } else*/
         
         
         //Query People profiles
@@ -63,7 +69,7 @@
             if (numPeople == 1000) {
               pageNum ++;
               debugger
-              output = $.concat(output, results.values()["results"])
+              output = $.concat(output, results.values().results)
             } else {
               has_results == false
               totalProfiles = (pageNum+1)*1000 + numPeople
