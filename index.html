@@ -37,6 +37,7 @@
           numPeople = 0,
           totalProfiles = 0,
           pageNum = 0,
+          nextPage = true,
           output = {};
 
       //Record selector for profiles
@@ -44,16 +45,28 @@
         e.preventDefault();
         propertyName = $('#property input:first').val();
         
-        MP.api.people({where: propertyName, page: 0}).done(function(output) {
-          console.log(output)
-        });
+        while (nextPage) {
+          var profiles = MP.api.people({where: propertyName, page: pageNum});
+          $.when(profiles).done(function(profiles) {
+            var profileData = profiles.values();
+            numPeople = Object.keys(results.values().results).length;
+            debugger;
+            if (numPeople == 1000) {
+              pageNum ++;
+              debugger;
+              output = $.concat(output, results.values().results)
+            } else {
+              has_results == false;
+              totalProfiles = (pageNum+1)*1000 + numPeople;
+            }
+            })
+          });
+          
+        }
         
         var appInstall = MP.api.people({where: propertyName, page: 0});
         
-        $.when(appInstall).done(function(appInstall) {
-          var appInstallData = appInstall.values();
-          debugger;
-        });
+        
         //var sessionId = data.values().session_id;
         var dataTwo = MP.api.people({where: propertyName, page: 1, session_id: sessionId})
         
