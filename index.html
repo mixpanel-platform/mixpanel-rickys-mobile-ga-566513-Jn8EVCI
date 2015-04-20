@@ -49,7 +49,7 @@
           if (numPeople == 1000) {
             pageNum++;
             debugger;
-            output = $.push(output, peopleProf.values().results)
+            output = output.push(peopleProf.values().results)
             debugger;
             getProfiles(pageNum, sessionId, output)
           } else { // ending iteration
