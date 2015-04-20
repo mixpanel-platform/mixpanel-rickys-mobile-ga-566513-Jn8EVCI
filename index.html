@@ -48,6 +48,7 @@
        
           var profiles = MP.api.people({where: propertyName, page: pageNum});
           $.when(profiles).done(function(results) {
+            debugger
             var profileData = profiles.values();
             numPeople = Object.keys(results.values().results).length;
             debugger;
