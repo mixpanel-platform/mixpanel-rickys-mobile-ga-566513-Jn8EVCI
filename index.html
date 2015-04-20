@@ -45,15 +45,14 @@
         propertyName = $('#property input:first').val();
          
         var nextPage = 1;
-        debugger;
+
         
-        while (nextPage < 2) {
           MP.api.people({where: propertyName, page: 0}).done(function(output) {
-            console.log(nextPage);
+            console.log(output);
             nextPage++;
             debugger;
           })
-        };
+        
         
         //Query People profiles
         /*while (nextPage) {
