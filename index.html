@@ -45,7 +45,7 @@
         e.preventDefault();
         propertyName = $('#property input:first').val();
         
-        while (nextPage) {
+       
           var profiles = MP.api.people({where: propertyName, page: pageNum});
           $.when(profiles).done(function(profiles) {
             var profileData = profiles.values();
@@ -60,7 +60,7 @@
               totalProfiles = (pageNum+1)*1000 + numPeople;
             }
           });
-          };
+          
         
         
         var appInstall = MP.api.people({where: propertyName, page: 0});
@@ -191,8 +191,6 @@
           });
           CSV += row + '\r\n';
         })
-        
-        
         
           
         //Generate a file name
