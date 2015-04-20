@@ -49,12 +49,12 @@
           if (numPeople == 1000) {
             pageNum++;
             debugger;
-            output = output.push(peopleProf.values().results)
+            output.push(peopleProf.values().results)
             debugger;
             getProfiles(pageNum, sessionId, output)
           } else { // ending iteration
             debugger;
-            output = output.push(peopleProf.values().results)
+            output.push(peopleProf.values().results)
             debugger;
             return (pageNum+1)*1000 + numPeople + 1;
             debugger;
