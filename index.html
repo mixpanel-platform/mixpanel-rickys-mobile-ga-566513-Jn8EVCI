@@ -45,22 +45,25 @@
         MP.api.people({where: propertyName, page: pageNum, session_id: sessionId}).done(function(peopleProf) {
           numPeople = Object.keys(peopleProf.values().results).length;
           console.log(peopleProf.values());
-          debugger;
           if (numPeople == 1000) {
             pageNum++;
-            debugger;
             output.push(peopleProf.values().results)
             debugger;
             getProfiles(pageNum, sessionId, output)
           } else { // ending iteration
-            debugger;
             output.push(peopleProf.values().results)
             debugger;
-            return (pageNum+1)*1000 + numPeople + 1;
+            totalProfiles = (pageNum+1)*1000 + numPeople + 1;
             debugger;
-          };
-        });
-      };      
+            $('.confirm-text').html(
+              "Property: <strong>" + propertyName + 
+              "</strong><br># People profiles that match: <strong>" + totalProfiles + "</strong>")
+            .css("color", "rgb(95,105,131)");
+            debugger;
+            runQuery(output);
+          }; 
+        })
+      };
           
           
       //Record selector for profiles
@@ -79,18 +82,19 @@
             getProfiles(pageNum, sessionId, output)
             debugger;
           } else {
-            output = results.values().results;
-          };
-          $('.confirm-text').html(
+            output = [results.values().results];
+            totalProfiles = numPeople
+            $('.confirm-text').html(
               "Property: <strong>" + propertyName + 
               "</strong><br># People profiles that match: <strong>" + totalProfiles + "</strong>")
             .css("color", "rgb(95,105,131)");
             debugger;
-          runQuery(output);
+            runQuery(output);
+          }; 
         }).fail(function() {
-            $('.confirm-text')
-              .html("Error: Please enter a valid property selector.")
-              .css("color", "red");
+          $('.confirm-text')
+            .html("Error: Please enter a valid property selector.")
+            .css("color", "red");
         });
       });
 
