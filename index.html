@@ -38,7 +38,7 @@
           totalProfiles = 0,
           pageNum = 0,
           nextPage = true,
-          output = {};
+          output = [];
           
       //Function for pagination
       function getProfiles(pageNum, sessionId, output){
@@ -54,7 +54,7 @@
             getProfiles(pageNum, sessionId, output)
           } else { // ending iteration
             debugger;
-            output = $.concat(output, peopleProf.values().results)
+            output = output.concat(peopleProf.values().results)
             debugger;
             return (pageNum+1)*1000 + numPeople + 1;;
             debugger;
