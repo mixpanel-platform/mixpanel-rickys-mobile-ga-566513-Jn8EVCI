@@ -156,8 +156,8 @@
             } catch (e) {}
           });
         });
-        return subkeys
-      }  
+        return subkeys;
+      };  
       
       function JSONToCSVConvertor(JSONData, ReportTitle) {
         //If JSONData is not an object then JSON.parse will parse the JSON string in an Object
@@ -201,7 +201,7 @@
             //if (data.indexOf(',') > -1) 
           });
           CSV += row + '\r\n';
-        })
+        });
         
           
         //Generate a file name
@@ -230,11 +230,7 @@
         
       };
       
-      
-    });
-      
-      // set functions to run when dropdowns change
-      
+      });
 
     </script>
   </body>
