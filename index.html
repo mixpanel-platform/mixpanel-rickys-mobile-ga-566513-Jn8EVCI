@@ -45,8 +45,8 @@
         propertyName = $('#property input:first').val();
         
         MP.api.people({where: propertyName, page: 2}).done(function(output) {
-          console.log(output.values())
-          debugger
+          console.log(output.values());
+          debugger;
         });
         
          
