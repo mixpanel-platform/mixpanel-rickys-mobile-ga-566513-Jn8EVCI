@@ -74,7 +74,7 @@
           numPeople = Object.keys(results.values().results).length;
           if (numPeople == 1000) {
             pageNum++;
-            output = results.values().results;
+            output = [results.values().results];
             debugger;
             getProfiles(pageNum, sessionId, output)
             debugger;
