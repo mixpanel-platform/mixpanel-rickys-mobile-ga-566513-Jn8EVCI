@@ -42,18 +42,18 @@
           
       //Function for pagination
       function getProfiles(pageNum, sessionId, output){
-        MP.api.people({where: propertyName, page: pageNum, session_id: sessionId}).done(function(output) {
-          console.log(output.values());
+        MP.api.people({where: propertyName, page: pageNum, session_id: sessionId}).done(function(peopleProf) {
+          console.log(peopleProf.values());
           debugger;
-          numPeople = Object.keys(output.values().results).length;
+          numPeople = Object.keys(peopleProf.values().results).length;
           if (numPeople == 1000) {
             pageNum++;
             debugger;
-            output = $.concat(output, results.values().results)
+            output = $.concat(output, peopleProf.values().results)
             debugger;
             getProfiles(pageNum, sessionId, output)
           } else { // ending iteration
-            output = $.concat(output, results.values().results)
+            output = $.concat(output, peopleProf.values().results)
             debugger;
             return (pageNum+1)*1000 + numPeople + 1;;
             debugger;
