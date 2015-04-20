@@ -53,7 +53,10 @@
             debugger;
             getProfiles(pageNum, sessionId, output)
           } else { // ending iteration
+            output = $.concat(output, results.values().results)
+            debugger;
             return (pageNum+1)*1000 + numPeople + 1;;
+            debugger;
           };
         });
       };      
@@ -73,11 +76,13 @@
             output = results.values().results;
             debugger;
             getProfiles(pageNum, sessionId, output)
+            debugger;
           } else {
             output = results.values().results;
           };
           $('.confirm-text')
             .html(
+              debugger;
               "Property: <strong>" + propertyName + 
               "</strong><br># People profiles that match: <strong>" + totalProfiles + "</strong>")
             .css("color", "rgb(95,105,131)");
