@@ -46,6 +46,7 @@
         
         var data = MP.api.people({where: propertyName, page: 0});
         console.log(data)
+        debugger
         //var sessionId = data.values().session_id;
         var dataTwo = MP.api.people({where: propertyName, page: 1, session_id: sessionId})
         
