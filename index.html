@@ -44,9 +44,12 @@
         e.preventDefault();
         propertyName = $('#property input:first').val();
         
-        MP.api.people({where: propertyName, page: 1}).done(function(output) {
+        MP.api.people({where: propertyName, page: 0}).done(function(output) {
           console.log(output.values());
-          debugger;
+          sessionId = output.values().session_id
+        });
+        MP.api.people({where: propertyName, page: 1, session_id = sessionId}).done(function(output) {
+          console.log(output.values());
         });
         
          
