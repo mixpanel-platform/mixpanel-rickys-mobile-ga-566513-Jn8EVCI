@@ -65,7 +65,7 @@
         //Building out profiles  
         MP.api.people({where: propertyName, page: 0}).done(function(results) {
           debugger
-          var sessionId = output.values().session_id;
+          var sessionId = output.values()['session_id'];
           numPeople = Object.keys(results.values().results).length;
           debugger
           if (numPeople == 1000) {
