@@ -131,7 +131,8 @@
           _.each(_.keys(data[i]), function(profileIndex){
           var profileData = data[i][profileIndex];
           event_list.push(profileData)
-        });
+          });
+        };
         
         //Write the header with people properties
         subkeys = getSubKeys(event_list)
