@@ -48,13 +48,10 @@
           if (numPeople == 1000) {
             pageNum++;
             output.push(peopleProf.values().results)
-            debugger;
             getProfiles(pageNum, sessionId, output)
           } else { // ending iteration
             output.push(peopleProf.values().results)
-            debugger;
             totalProfiles = (pageNum)*1000 + numPeople;
-            debugger;
             $('.confirm-text').html(
               "Property: <strong>" + propertyName + 
               "</strong><br># People profiles that match: <strong>" + totalProfiles + "</strong>")
@@ -80,7 +77,6 @@
             output = [results.values().results];
             console.log(output);
             getProfiles(pageNum, sessionId, output)
-            debugger;
           } else {
             output = [results.values().results];
             totalProfiles = numPeople
@@ -97,46 +93,6 @@
             .css("color", "red");
         });
       });
-
-        /*if (currentPage == pageNum) {
-          MP.api.people({where: propertyName, page: pageNum}).done(function(output) {
-            currentPage = output.values().page;
-            pageNum++;
-            console.log(currentPage);
-            console.log(pageNum);
-            debugger;
-          }):
-        } else*/
-        
-        
-        //Query People profiles
-        /*while (nextPage) {
-          debugger
-          MP.api.people({where: propertyName, page: 0}).done(function(results) {
-            numPeople = Object.keys(results.values().results).length;
-            debugger
-            if (numPeople == 1000) {
-              pageNum ++;
-              debugger
-              output = $.concat(output, results.values().results)
-            } else {
-              has_results == false
-              totalProfiles = (pageNum+1)*1000 + numPeople
-            }
-            }).fail(function() {
-            $('.confirm-text')
-              .html("Error: Please enter a valid property selector.")
-              .css("color", "red");
-            });
-        };
-        $('.confirm-text')
-        .html(
-          "Property: <strong>" + propertyName + 
-          "</strong><br># People profiles that match: <strong>" + totalProfiles + "</strong>")
-        .css("color", "rgb(95,105,131)");
-        console.log(output)
-      runQuery(output);
-      });*/
       
       function runQuery(results) {
         $('#file').submit(function(e) {
@@ -171,8 +127,9 @@
         
         //Create list of profiles
         var event_list = [];
-        _.each(_.keys(data), function(profileIndex){
-          var profileData = data[profileIndex];
+        for (i = 0; i < JSONData.length; i++) {
+          _.each(_.keys(data[i]), function(profileIndex){
+          var profileData = data[i][profileIndex];
           event_list.push(profileData)
         });
         
